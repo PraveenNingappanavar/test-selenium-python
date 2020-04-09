@@ -10,13 +10,14 @@ from pages.product_page import ProductPage
 URL = Url.PRODUCT_PAGE
 
 
-@pytest.mark.guest
+@pytest.mark.guest_flow
 class TestGuestOnProductPage:
     def test_guest_should_see_login_link_on_product_page(self, browser):
         product_page = ProductPage(browser, URL)
         product_page.open()
         product_page.should_have_login_link()
 
+    @pytest.mark.smoke
     def test_guest_can_open_login_page_from_product_page(self, browser):
         product_page = ProductPage(browser, URL)
         product_page.open()
@@ -24,6 +25,7 @@ class TestGuestOnProductPage:
         login_page = LoginPage(browser, browser.current_url)
         login_page.should_be_login_page()
 
+    @pytest.mark.smoke
     def test_guest_can_add_product_to_basket(self, browser):
         product_page = ProductPage(browser, URL)
         product_page.open()
@@ -38,6 +40,7 @@ class TestGuestOnProductPage:
         product_page.open()
         product_page.should_not_display_success_message()
 
+    @pytest.mark.basket_flow
     def test_guest_can_open_basket_from_product_page(self, browser):
         product_page = ProductPage(browser, URL)
         product_page.open()
@@ -46,8 +49,8 @@ class TestGuestOnProductPage:
         basket_page.should_be_basket_page()
 
 
-@pytest.mark.user
-class TestUserProductPage:
+@pytest.mark.user_flow
+class TestUserOnProductPage:
     # setup should be replaced with api call
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
@@ -64,6 +67,7 @@ class TestUserProductPage:
         time.sleep(10)
         product_page.should_not_display_success_message()
 
+    @pytest.mark.smoke
     def test_user_can_add_product_to_basket(self, browser):
         product_page = ProductPage(browser, URL)
         product_page.open()
