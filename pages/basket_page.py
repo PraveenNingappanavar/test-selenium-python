@@ -2,12 +2,26 @@ from pages.base_page import BasePage
 from pages.locators import BasketPageLocators
 
 empty_message_text = "Your basket is empty"
+basket_title_text = "Basket"
 
 
 class BasketPage(BasePage):
+    def should_be_basket_page(self):
+        self.should_be_basket_url()
+        self.should_have_basket_title()
+
     def should_be_empty(self):
         self.should_not_have_items()
         self.should_have_empty_message()
+
+    def should_be_basket_url(self):
+        print("Checking that it is basket page url")
+        assert "basket" in self.browser.current_url, "Incorrect url for basket page"
+
+    def should_have_basket_title(self):
+        print("Checking that basket has title")
+        assert basket_title_text in self.find_element(BasketPageLocators.BASKET_TITLE).text,\
+            "Basket page has incorrect title"
 
     def should_not_have_items(self):
         print("Checking that basket doesn't have items")

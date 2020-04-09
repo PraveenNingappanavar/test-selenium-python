@@ -9,6 +9,7 @@ class BasePageLocators:
 class BasketPageLocators:
     BASKET_ITEMS = (By.CSS_SELECTOR, ".basket-items")
     BASKET_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    BASKET_TITLE = (By.CSS_SELECTOR, ".page-header h1")
 
 
 class LoginPageLocators:
