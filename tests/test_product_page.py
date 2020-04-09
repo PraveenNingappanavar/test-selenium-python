@@ -48,6 +48,7 @@ class TestGuestOnProductPage:
 
 @pytest.mark.user
 class TestUserProductPage:
+    # setup should be replaced with api call
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         time_stamp = str(time.time())

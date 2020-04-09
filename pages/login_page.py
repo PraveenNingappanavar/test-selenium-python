@@ -10,6 +10,12 @@ class LoginPage(BasePage):
         self.find_element(LoginPageLocators.REGISTRATION_PASSWORD_2).send_keys(password)
         self.find_element(LoginPageLocators.REGISTRATION_SUBMIT_BUTTON).click()
 
+    def login_user(self, email, password):
+        print(f"Trying to login with {email} and {password}")
+        self.find_element(LoginPageLocators.LOGIN_USERNAME).send_keys(email)
+        self.find_element(LoginPageLocators.LOGIN_PASSWORD).send_keys(password)
+        self.find_element(LoginPageLocators.LOGIN_SUBMIT).click()
+
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_have_login_form()

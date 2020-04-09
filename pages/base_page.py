@@ -25,6 +25,10 @@ class BasePage:
         self.find_element(BasePageLocators.BASKET_BUTTON).click()
         print("Navigating to basket page")
 
+    def logout_user(self):
+        print(f"Trying to logout")
+        self.find_element(BasePageLocators.LOGOUT_BUTTON).click()
+
     def should_have_login_link(self):
         print("Checking if login link is displayed on main page")
         assert self.find_element(BasePageLocators.LOGIN_LINK).is_displayed(), "Login link is not displayed"
