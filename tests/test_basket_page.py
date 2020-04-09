@@ -1,6 +1,7 @@
 from pages.basket_page import BasketPage
+from commons.constants import Url
 
-URL = "http://selenium1py.pythonanywhere.com/en-gb/basket/"
+URL = Url.BASKET_PAGE
 
 
 def test_basket_is_empty_on_first_opening(browser):

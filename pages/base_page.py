@@ -29,6 +29,10 @@ class BasePage:
         print("Checking if login link is displayed on main page")
         assert self.find_element(BasePageLocators.LOGIN_LINK).is_displayed(), "Login link is not displayed"
 
+    def user_should_be_authorized(self):
+        print("Checking that user is authorized")
+        assert self.find_element(BasePageLocators.USER_ICON).is_displayed(), "User is not authorized"
+
     # methods to work with elements
     def find_element(self, locator, time=10):
         print(f"..trying to find element by locator {locator}")

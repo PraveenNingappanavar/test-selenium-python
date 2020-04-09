@@ -1,10 +1,13 @@
+import time
+
 import pytest
 
+from commons.constants import Url
 from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 
-URL = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+URL = Url.PRODUCT_PAGE
 
 
 @pytest.mark.guest
@@ -45,12 +48,16 @@ class TestGuestOnProductPage:
 
 @pytest.mark.user
 class TestUserProductPage:
-    @pytest.fixture()
+    # @pytest.fixture(scope="function", autouse=True)
+    # def setup(self):
+
     def test_user_does_not_see_success_message_on_page_opening(self, browser):
         product_page = ProductPage(browser, URL)
         product_page.open()
+        time.sleep(10)
         product_page.should_not_display_success_message()
 
+    @pytest.mark.skip
     def test_user_can_add_product_to_basket(self, browser):
         product_page = ProductPage(browser, URL)
         product_page.open()
