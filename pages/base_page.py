@@ -19,7 +19,11 @@ class BasePage:
 
     def go_to_login_page(self):
         self.find_element(BasePageLocators.LOGIN_LINK).click()
-        print("Navigating from main page to login page")
+        print("Navigating to login page")
+
+    def go_to_basket_page(self):
+        self.find_element(BasePageLocators.BASKET_BUTTON).click()
+        print("Navigating to basket page")
 
     def should_have_login_link(self):
         print("Checking if login link is displayed on main page")

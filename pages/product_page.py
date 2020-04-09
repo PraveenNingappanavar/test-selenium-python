@@ -3,9 +3,9 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
-    def add_product_to_cart(self):
-        print("Adding product to cart")
-        self.find_element(ProductPageLocators.ADD_TO_CART_BUTTON).click()
+    def add_product_to_basket(self):
+        print("Adding product to basket")
+        self.find_element(ProductPageLocators.ADD_TO_BASKET_BUTTON).click()
 
     def get_product_name(self):
         print("Getting product name")
