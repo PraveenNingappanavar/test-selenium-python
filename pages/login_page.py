@@ -1,8 +1,13 @@
+from commons.constants import Url
 from .base_page import BasePage
 from .locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.url = Url.LOGIN_PAGE
+
     def register_user(self, email, password):
         print(f"Registering new user with email {email}")
         self.find_element(LoginPageLocators.REGISTRATION_EMAIL).send_keys(email)

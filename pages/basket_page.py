@@ -1,3 +1,4 @@
+from commons.constants import Url
 from pages.base_page import BasePage
 from pages.locators import BasketPageLocators
 
@@ -6,6 +7,10 @@ basket_title_text = "Basket"
 
 
 class BasketPage(BasePage):
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.url = Url.BASKET_PAGE
+
     def should_be_basket_page(self):
         self.should_be_basket_url()
         self.should_have_basket_title()

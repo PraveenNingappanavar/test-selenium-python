@@ -4,13 +4,14 @@ from selenium.common.exceptions import NoAlertPresentException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from commons.constants import Url
 from .locators import BasePageLocators
 
 
 class BasePage:
-    def __init__(self, browser, url):
+    def __init__(self, browser):
         self.browser = browser
-        self.url = url
+        self.url = Url.BASE_URL
 
     # page methods
     def open(self):

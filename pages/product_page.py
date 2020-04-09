@@ -1,8 +1,13 @@
+from commons.constants import Url
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.url = Url.PRODUCT_PAGE
+
     def add_product_to_basket(self):
         print("Adding product to basket")
         self.find_element(ProductPageLocators.ADD_TO_BASKET_BUTTON).click()

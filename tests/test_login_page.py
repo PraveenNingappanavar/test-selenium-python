@@ -2,10 +2,7 @@ import time
 
 import pytest
 
-from commons.constants import Url
 from pages.login_page import LoginPage
-
-URL = Url.LOGIN_PAGE
 
 
 @pytest.mark.smoke
@@ -16,7 +13,7 @@ class TestRegistration:
         email = time_stamp + "@fakemail.com"
         password = time_stamp
 
-        login_page = LoginPage(browser, URL)
+        login_page = LoginPage(browser)
         login_page.open()
         login_page.register_user(email, password)
         login_page.user_should_be_authorized()
@@ -30,14 +27,14 @@ class TestLogin:
         time_stamp = str(time.time())
         self.email = time_stamp + "@fakemail.com"
         self.password = time_stamp
-        login_page = LoginPage(browser, URL)
+        login_page = LoginPage(browser)
         login_page.open()
         login_page.register_user(self.email, self.password)
         login_page.logout_user()
 
     @pytest.mark.smoke
     def test_registered_user_can_login(self, browser):
-        login_page = LoginPage(browser, URL)
+        login_page = LoginPage(browser)
         login_page.open()
         login_page.login_user(self.email, self.password)
         login_page.user_should_be_authorized()
