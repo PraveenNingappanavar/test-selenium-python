@@ -4,16 +4,28 @@ from selenium.common.exceptions import NoAlertPresentException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from .locators import BasePageLocators
+
 
 class BasePage:
     def __init__(self, browser, url):
         self.browser = browser
         self.url = url
 
+    # page methods
     def open(self):
         print(f"Opening page with url {self.url}")
         self.browser.get(self.url)
 
+    def go_to_login_page(self):
+        self.find_element(BasePageLocators.LOGIN_LINK).click()
+        print("Navigating from main page to login page")
+
+    def should_have_login_link(self):
+        print("Checking if login link is displayed on main page")
+        assert self.find_element(BasePageLocators.LOGIN_LINK).is_displayed(), "Login link is not displayed"
+
+    # methods to work with elements
     def find_element(self, locator, time=10):
         print(f"..trying to find element by locator {locator}")
         return WebDriverWait(self.browser, time).until(EC.presence_of_element_located(locator),
