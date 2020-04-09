@@ -48,8 +48,14 @@ class TestGuestOnProductPage:
 
 @pytest.mark.user
 class TestUserProductPage:
-    # @pytest.fixture(scope="function", autouse=True)
-    # def setup(self):
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        time_stamp = str(time.time())
+        email = time_stamp + "@fakemail.com"
+        password = time_stamp
+        login_page = LoginPage(browser, Url.LOGIN_PAGE)
+        login_page.open()
+        login_page.register_user(email, password)
 
     def test_user_does_not_see_success_message_on_page_opening(self, browser):
         product_page = ProductPage(browser, URL)
@@ -57,7 +63,6 @@ class TestUserProductPage:
         time.sleep(10)
         product_page.should_not_display_success_message()
 
-    @pytest.mark.skip
     def test_user_can_add_product_to_basket(self, browser):
         product_page = ProductPage(browser, URL)
         product_page.open()
