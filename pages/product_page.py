@@ -21,8 +21,20 @@ class ProductPage(BasePage):
 
     def product_success_message_should_have(self, product_name):
         print(f"Checking that {product_name} is displayed in success message")
-        assert product_name in self.find_element(ProductPageLocators.PRODUCT_ADDED_SUCCESS_MESSAGE).text
+        assert product_name in self.find_element(ProductPageLocators.PRODUCT_ADDED_SUCCESS_MESSAGE).text,\
+            "Product name is not displayed in success message"
 
     def basket_total_should_be_equal(self, product_price):
         print(f"Checking that basket total equals {product_price}")
-        assert product_price in self.find_element(ProductPageLocators.BASKET_TOTAL_MESSAGE).text
+        assert product_price in self.find_element(ProductPageLocators.BASKET_TOTAL_MESSAGE).text,\
+            "Basket total does not not equal to product price"
+
+    def should_not_display_success_message(self):
+        print("Checking that success message is not displayed")
+        assert self.element_is_not_present(ProductPageLocators.PRODUCT_ADDED_SUCCESS_MESSAGE),\
+            "Success message is displayed, but should not be"
+
+    def success_message_should_disappear(self):
+        print("Checking that success message is disappeared after being displayed")
+        assert self.element_is_disappeared(ProductPageLocators.PRODUCT_ADDED_SUCCESS_MESSAGE),\
+            "Success message is not disappeared"
